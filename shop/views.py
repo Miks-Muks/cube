@@ -15,7 +15,7 @@ def all_categories(request):
 
 
 def product_category(request, category_pk):
-    products = Product.objects.filter(category_id=category_pk)
+    products = Product.objects.filter(category=category_pk)
     return render(request, 'shop/product_category.html', {'products': products})
 
 
@@ -34,6 +34,10 @@ def add_to_basket(request, product_pk):
 
 
 def show_basket(request):
-    user_basket = Basket.objects.filter(user=request.user).first()
-    products = user_basket.products.all
-    return render(request, 'shop/basket', {'products': products, 'user_basket': user_basket})
+    try:
+        user_basket = Basket.objects.filter(user=request.user).first()
+        products = user_basket.products.all
+        return render(request, 'shop/show_basket.html', {'user_basket': user_basket, 'products': products})
+    except AttributeError:
+        return render(request, 'shop/show_basket.html', {'user_basket': user_basket, 'error': 'Miss'})
+

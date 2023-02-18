@@ -14,39 +14,10 @@
         </div>
     </div>
       {%endblock%}
-{%block startcat%}
 
-<div class="text-catalog">
-    <div>
-    <h2>Каталог товаров</h2>
-  </div>
-
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-          </div>
-        </div>
-      </nav>
-    {% for c in cat%}
-      <div class="card " style="width: 18rem;">
-        <img src="{{ c.image_cat.url }}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">{{c.name}}</h5>
-
-        </div>>
-
-
-        <div class="card-body">
-
-          <a href="{% url 'all_categories' %}" class="btn btn-primary bot">Посмотреть товар</a>
-        </div>
-          {%endfor%}
-      </div>
-    </div
-{%endblock%}
-
-
-        {%block map%}
- <div style="margin-left:590px">
-        <h2 class="text-posotion-cart">Где нас найти ?</h2>
+            {%block map%}
+ <div style="margin-left:350px">
+        <h2 style="margin-left: 180px;">Где нас найти ?</h2>
         <div style="margin-top: 50px;">
           <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac2bbc2560feba4e927eef515d4f20ca8f356724dd21335a1a9747e7d32b8cdb2&amp;width=600&amp;height=426&amp;lang=ru_RU&amp;scroll=true"></script>
         </div>
@@ -54,3 +25,43 @@
 
 
 {%endblock%}
+
+    {%block footer%}
+     <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top bot ">
+          <div class="col mb-3 ">
+            <p class="text-muted right-text">&copy; 2023 - cubekazan.ru</p>
+          </div>
+
+          <div class="col mb-3">
+
+          </div>
+
+          <div class="col mb-3">
+            <h5>Связь</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Телефон: <b> (843) 259‑66‑57 </b></a></li>
+
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Электронная почта: <b>korobki16@mail.ru</b></a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">WhatsApp: <b>+7962‑559‑66‑57</b></a></li>
+            </ul>
+          </div>
+
+          <div class="col mb-3">
+            <h5>Информация о магазине</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><p class="nav-link p-0 text-muted text-color-footer color">Адрес Чистопольская ул., 7, Казань</p></li>
+              <li class="nav-item mb-2"><p  class="nav-link p-0 text-muted">График работы пн-пт 10:00-18:00
+                 </p></li>
+              <li class="nav-item mb-2"><p  class="nav-link p-0 text-muted">сб 10:00-15:00</p></li>
+              <li class="nav-item mb-2"><p  class="nav-link p-0 text-muted">обед 13:00-14:00</p></li>
+           <li class="nav-item mb-2"><a href="/admin/" class="nav-link p-0 text-muted">Для сотрудников</a></li>
+            </ul>
+          </div>
+
+          <div class="col mb-3">
+
+            </ul>
+          </div>
+        </footer>
+
+    {%endblock%}
