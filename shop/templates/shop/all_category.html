@@ -1,3 +1,10 @@
 {%extends 'shop/base.html'%}
 {%load static%}
 
+ {%block startcat%}
+
+ {% for c in cat%}
+    <a href="'product_category' category_pk=category.id">{{c.name}}</a>
+
+{% endfor%}
+{%endblock%}

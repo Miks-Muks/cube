@@ -1,0 +1,45 @@
+{%extends 'shop/base.html'%}
+
+
+{%block content%}
+   <!-- Responsive navbar-->
+
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+   <div class="container">
+       <div class="card  ">
+           <div class="card-body">
+               <h3 class="card-title">{{product.name_product}}</h3>
+                              <div class="row">
+                   <div class="col-lg-5 col-md-5 col-sm-6">
+                       <div class="white-box text-center"><img src="{{product.image.url }}" class="img-responsive" width="330" height="400"></div>
+                   </div>
+                   <div class="col-lg-7 col-md-7 col-sm-6">
+                       <h4 class="box-title mt-5"><b>Описание товара</b></h4>
+                       <p>{{product.description}}</p>
+                       <form>
+                       <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart">
+                           <i class="fa fa-shopping-cart"></i>
+                       </button>
+                       <button class="btn btn-primary btn-rounded color">Добавить в Корзину</button></form>
+                       <h3 class="box-title mt-5">Характеристики и цены</h3>
+                       <ul class="list-unstyled">
+                           <li><i class="fa fa-check text-success"></i>Размеры, см:{{product.size}}</li>
+                           <li><i class="fa fa-check text-success"></i>Марка картона:{{product.brand_of_cardboard}}</li>
+                           <li><i class="fa fa-check text-success"></i>Цена от 10 до 99 шт-{{product.price_1}}</li>
+                           <li><i class="fa fa-check text-success"></i>Цена от 100 до 999 шт-{{product.price_2}}</li>
+                           <li><i class="fa fa-check text-success"></i>Цена от 1000 шт-{{product.price_3}}</li>
+                       </ul>
+                   </div>
+
+               </div>
+           </div>
+       </div>
+   </div>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{%endblock%}

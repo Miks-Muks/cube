@@ -1,5 +1,4 @@
 {% load static %}
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,12 +8,11 @@
     <style>
 
       .position{
-        left: 720px;
+        left: 320px;
         top: 30px;
       }
 
-      .bot{
-         background-color: #99ce00;
+
       }
       .left_text{
         margin-left: 40px;
@@ -52,12 +50,12 @@
           src="{% static "images/photo_2022-12-28_18-21-41.png" %}" width="70" height="70"
             alt="Тут иконка магаза">
       <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none left-text">
-        <svg class="bi me-2" width="40" height="32"><use xlink:href=""/></svg>
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="home"/></svg>
         <span class="fs-4"><p class="to"><b>Куб</b> - <i>интернет магазин</i></p></span>
       </a>
 
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link active bot" aria-current="page">Главная</a></li>
+        <li class="nav-item"><a href="{%url 'home'%}" class="nav-link active bot" aria-current="page">Главная</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Каталог
@@ -90,7 +88,7 @@
     </header>
 
   </div>
-
+{%block content%}{%endblock%}
 {%block startinfo%} {%endblock%}
 
   {%block startcat%}{%endblock%}
@@ -126,7 +124,7 @@
                  </p></li>
               <li class="nav-item mb-2"><p  class="nav-link p-0 text-muted">сб 10:00-15:00</p></li>
               <li class="nav-item mb-2"><p  class="nav-link p-0 text-muted">обед 13:00-14:00</p></li>
-           <li class="nav-item mb-2"><a href="admin/" class="nav-link p-0 text-muted">Для суотрудников</a></li>
+           <li class="nav-item mb-2"><a href="/admin/" class="nav-link p-0 text-muted">Для сотрудников</a></li>
             </ul>
           </div>
 
