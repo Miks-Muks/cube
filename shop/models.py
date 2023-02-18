@@ -17,10 +17,10 @@ class Category(models.Model):
 class Product(models.Model):
     name_product = models.CharField(verbose_name='Имя товара', max_length=100)
     description = models.TextField(verbose_name='Описание товара')
-    size = models.TextField(verbose_name='Размеры Товара')
+    size = models.CharField(verbose_name='Размеры Товара', max_length=30)
     brand_of_cardboard = models.CharField(verbose_name='Марка картона', max_length=50)
-    price_1 = models.FloatField(verbose_name='Цена от 10 до 99 шт', blank=False)
-    price_2 = models.FloatField(verbose_name='Цена от 100 до 999 шт', blank=False)
+    price_1 = models.FloatField(verbose_name='Цена от 1', blank=False)
+    price_2 = models.FloatField(verbose_name='Цена от 100 шт', blank=False)
     price_3 = models.FloatField(verbose_name='Цена от 1000 шт', blank=False)
     image = models.ImageField(verbose_name='Фотография товара', upload_to='shop/images')
     in_stock = models.BooleanField(verbose_name="В наличии")

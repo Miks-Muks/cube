@@ -1,6 +1,7 @@
 {% extends 'shop/base.html'%}
-
+{%block content%}
 {% for p in products%}
     {{p.name_product}}
 
 {%endfor%}
+{%endblock%}

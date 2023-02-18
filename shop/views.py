@@ -14,9 +14,10 @@ def all_categories(request):
     return render(request, 'shop/all_category.html', {'cat': categories})
 
 
-def product_category(request, category_pk):
-    products = Product.objects.filter(category=category_pk)
-    return render(request, 'shop/product_category.html', {'products': products})
+def all_product_category(request, category_pk):
+    products = Product.objects.filter(category_pk=category_pk, in_stock=True)
+    category = Category.objects.get(pk=category_pk)
+    return render(request, 'shop/product_category.html', {'products': products, 'cat': category})
 
 
 def product_detail(request, product_pk):
