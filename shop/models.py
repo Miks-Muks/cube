@@ -8,7 +8,7 @@ class Category(models.Model):
     image_cat = models.ImageField(verbose_name='Фотография категории', upload_to='shop/images_cat')
 
     class Meta:
-        verbose_name = 'Категория'
+        verbose_name = 'Категории'
 
     def __str__(self):
         return self.name
@@ -16,7 +16,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name_product = models.CharField(verbose_name='Имя товара', max_length=100)
-    description = models.TextField(verbose_name='Описание товара')
+    description = models.TextField(verbose_name='Описание товара', help_text='Введите подробное описание товара')
     size = models.CharField(verbose_name='Размеры Товара', max_length=30)
     brand_of_cardboard = models.CharField(verbose_name='Марка картона', max_length=50)
     price_1 = models.FloatField(verbose_name='Цена от 1', blank=False)

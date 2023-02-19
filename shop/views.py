@@ -5,19 +5,17 @@ from .models import Category, Product, Basket, Orders
 # Create your views here.
 
 def home(request):
-    category = Category.objects.all()[:3]
-    return render(request, 'shop/home.html', {'cat': category})
+    return render(request, 'shop/home.html')
 
 
 def all_categories(request):
-    categories = category = Category.objects.all()
+    categories = Category.objects.all()
     return render(request, 'shop/all_category.html', {'cat': categories})
 
 
 def all_product_category(request, category_pk):
-    products = Product.objects.filter(category_pk=category_pk, in_stock=True)
-    category = Category.objects.get(pk=category_pk)
-    return render(request, 'shop/product_category.html', {'products': products, 'cat': category})
+    category = Category.objects.select_releted('product')
+    return render(request, 'shop/all_product_category.html', {'products': products, 'cat': category})
 
 
 def product_detail(request, product_pk):

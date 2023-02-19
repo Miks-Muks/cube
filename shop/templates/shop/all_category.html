@@ -4,7 +4,18 @@
  {%block startcat%}
 
  {% for c in cat%}
-    <a href="'product_category' category_pk=category.id">{{c.name}}</a>
+ <div class="card position" style="width: 18rem;">
+        <img src="{{c.image_cat.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{c.name}}</h5>
 
+        </div>
+
+        <div class="card-body">
+
+          <a href="{% url 'all_product_category' category_pk=category.id%}" class="btn btn-primary bot">Посмотреть товар</a>
+        </div>
+      </div>
+    </div>
 {% endfor%}
 {%endblock%}
