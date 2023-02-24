@@ -1,14 +1,18 @@
 from django.contrib import admin
 from .models import Category, Product, Basket, Orders
-
+from django import form
 
 # Register your models here.
 
+
+class ProductAdminForm(form.ModelForm):
+    pass
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['slug', 'name']
     list_editable = ['name']
     list_filter = ['name']
+
 
 
 @admin.register(Product)
