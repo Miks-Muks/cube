@@ -16,7 +16,7 @@
                    </div>
                    <div class="col-lg-7 col-md-7 col-sm-6">
                        <h4 class="box-title mt-5"><b>Описание товара</b></h4>
-                       <p>{{product.description}}</p>
+                       <p>{{product.description|safe}}</p>
                        <form action=""  method="POST">
                            {% csrf_token %}
                        <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart">
@@ -26,10 +26,10 @@
                        <h3 class="box-title mt-5">Характеристики и цены</h3>
                        <ul class="list-unstyled">
                            <li><i class="fa fa-check text-success"></i>Размеры, см:{{product.size}}</li>
-                           <li><i class="fa fa-check text-success"></i>Марка картона:{{product.brand_of_cardboard}}</li>
-                           <li><i class="fa fa-check text-success"></i>Цена от 10 до 99 шт-{{product.price_1}}</li>
-                           <li><i class="fa fa-check text-success"></i>Цена от 100 до 999 шт-{{product.price_2}}</li>
-                           <li><i class="fa fa-check text-success"></i>Цена от 1000 шт-{{product.price_3}}</li>
+                           <li><i class="fa fa-check text-success"></i>Марка картона:{{product.brand_of_cardboard}} р.</li>
+                           <li><i class="fa fa-check text-success"></i>Цена от 10-{{product.price_1}} р.</li>
+                           <li><i class="fa fa-check text-success"></i>Цена от 100-{{product.price_2}} р.</li>
+                           <li><i class="fa fa-check text-success"></i>Цена от 1000 шт-{{product.price_3}} р.</li>
                        </ul>
                    </div>
 
@@ -44,3 +44,42 @@
 <script src="js/scripts.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 {%endblock%}
+    {%block footer%}
+     <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top bot ">
+          <div class="col mb-3 ">
+            <p class="text-muted right-text">&copy; 2023 - cubekazan.ru</p>
+          </div>
+
+          <div class="col mb-3">
+
+          </div>
+
+          <div class="col mb-3">
+            <h5>Связь</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Телефон: <b> (843) 259‑66‑57 </b></a></li>
+
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Электронная почта: <b>korobki16@mail.ru</b></a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">WhatsApp: <b>+7962‑559‑66‑57</b></a></li>
+            </ul>
+          </div>
+
+          <div class="col mb-3">
+            <h5>Информация о магазине</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><p class="nav-link p-0 text-muted text-color-footer color">Адрес Чистопольская ул., 7, Казань</p></li>
+              <li class="nav-item mb-2"><p  class="nav-link p-0 text-muted">График работы пн-пт 10:00-18:00
+                 </p></li>
+              <li class="nav-item mb-2"><p  class="nav-link p-0 text-muted">сб 10:00-15:00</p></li>
+              <li class="nav-item mb-2"><p  class="nav-link p-0 text-muted">обед 13:00-14:00</p></li>
+           <li class="nav-item mb-2"><a href="/admin/" class="nav-link p-0 text-muted">Для сотрудников</a></li>
+            </ul>
+          </div>
+
+          <div class="col mb-3">
+
+            </ul>
+          </div>
+        </footer>
+
+    {%endblock%}

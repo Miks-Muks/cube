@@ -1,26 +1,33 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import TemplateView, ListView, DetailView
+
 from .models import Category, Product, Basket, Orders
 
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'shop/home.html')
+class HomeView(TemplateView):
+    template_name = 'shop/home.html'
 
 
-def all_categories(request):
-    categories = Category.objects.all()
-    return render(request, 'shop/all_category.html', {'cat': categories})
+class CategoryList(ListView):
+    model = Category
+    context_object_name = 'cat'
+    # queryset = Category.objects.all()
+    template_name = 'shop/all_category.html'
+
+    def get_queryset(self):
+        return Category.objects.all()
 
 
 def all_product_category(request, category_pk):
-    category = Category.objects.select_releted('product')
-    return render(request, 'shop/all_product_category.html', {'products': products, 'cat': category})
+    products = Product.objects.filter(category__pk=category_pk).select_related('category')
+    return render(request, 'shop/all_product_category.html', {'products': products})
 
 
-def product_detail(request, product_pk):
-    product = get_object_or_404(Product, pk=product_pk)
-    return render(request, 'shop/product_detail.html', {'product': product})
+class ProductDetail(DetailView):
+    model = Product
+    pk_url_kwarg = 'product_pk'
 
 
 def add_to_basket(request, product_pk):
@@ -39,4 +46,3 @@ def show_basket(request):
         return render(request, 'shop/show_basket.html', {'user_basket': user_basket, 'products': products})
     except AttributeError:
         return render(request, 'shop/show_basket.html', {'user_basket': user_basket, 'error': 'Miss'})
-
