@@ -12,3 +12,4 @@ urlpatterns = [
     path('add_to_basket/<int:product_pk>', add_to_basket, name='add_to_basket'),
     path('send_sms>', send_sms, name='send_sms'),
 ]
+    

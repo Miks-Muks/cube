@@ -38,4 +38,6 @@ class ProductAdmin(admin.ModelAdmin):
     form = ProductAdminForm
 
 
-admin.site.register(Orders)
+@admin.register(Orders)
+class OrdersAdmin(admin.ModelAdmin):
+    readonly_fields = ['number_phone', 'products']

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinLengthValidator
 
 
 # Create your models here.
@@ -27,7 +28,9 @@ class Product(models.Model):
     category = models.ForeignKey(Category, verbose_name='Выберите категорию товара', on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = "Товары"
+        verbose_name = "Товар"
+        verbose_name_plural = "Товары"
+        indexes = [models.Index(fields=['name_product', ])]
 
     def __str__(self):
         return self.name_product
@@ -36,6 +39,13 @@ class Product(models.Model):
 class Orders(models.Model):
     products = models.ManyToManyField(Product, related_name='orders')
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    number_phone = models.CharField(max_length=20, verbose_name='Номер телефона')
+
+    class Meta:
+        default_permissions = ('delete', 'view')
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+
 
     def __str__(self):
         return f'{self.user}'
