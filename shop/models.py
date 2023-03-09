@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
-
+from phone_field import PhoneField
 
 # Create your models here.
 class Category(models.Model):
@@ -39,13 +39,13 @@ class Product(models.Model):
 class Orders(models.Model):
     products = models.ManyToManyField(Product, related_name='orders')
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    number_phone = models.CharField(max_length=20, verbose_name='Номер телефона')
+    phone_number = PhoneField(blank=True, help_text='Введите номер телефона')
+    name = models.CharField(max_length=30, verbose_name='ФИО', blank=True)
 
     class Meta:
         default_permissions = ('delete', 'view')
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
-
 
     def __str__(self):
         return f'{self.user}'

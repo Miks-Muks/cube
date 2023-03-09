@@ -40,4 +40,4 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Orders)
 class OrdersAdmin(admin.ModelAdmin):
-    readonly_fields = ['number_phone', 'products']
+    readonly_fields = [ 'products']

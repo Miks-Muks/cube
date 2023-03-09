@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'shop',
     'debug_toolbar',
     'ckeditor',
+    'phone_field'
 ]
 
 MIDDLEWARE = [

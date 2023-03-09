@@ -56,35 +56,15 @@
 
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="{%url 'home'%}" class="nav-link active bot" aria-current="page">Главная</a></li>
-          <li class="nav-item"><a href="{%url 'send_sms'%}" class="nav-link active bot" aria-current="page">Sms_test</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="{%url 'all_categories'%}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Каталог
-          </a>
-          <ul class="dropdown-menu">
 
-            <li><a class="dropdown-item" href="#">Четырехклапанные коробки</a></li>
-            <li><a class="dropdown-item" href="#">Самосборные коробки</a></li>
-            <li><a class="dropdown-item" href="#">Зип пакеты</a></li>
-            <li><a class="dropdown-item" href="#">Курьерские пакеты</a></li>
-            <li><a class="dropdown-item" href="#">Пакеты с клеевым клапаном</a></li>
-            <li><a class="dropdown-item" href="#">Воздушно-пузырьковая пленка</a></li>
-            <li><a class="dropdown-item" href="#">Стрейч пленка</a></li>
-            <li><a class="dropdown-item" href="#">Скотч</a></li>
-            <li><a class="dropdown-item" href="#">Дополнительно</a></li>
-          </ul>
-        </li>
+
+        <li class="nav-item"><a href="{% url 'all_categories'%} "  class="nav-link">Категории</a></li>
+
 
         <li class="nav-item"><a href="https://yandex.ru/maps/org/tsentr_pokupok/1101737285/?ll=49.103678%2C55.819755&z=16 "  class="nav-link">Адрес</a></li>
-        <li class="nav-item">
-            <button type="button" class="btn btn-primary button-right">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket" viewBox="0 0 16 16">
-    <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v4.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 13.5V9a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1.217L5.07 1.243a.5.5 0 0 1 .686-.172zM2 9v4.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V9H2zM1 7v1h14V7H1zm3 3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 4 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 6 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 8 10zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5zm2 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 1 .5-.5z"/>
-    </svg>
-          Корзина
-        </button></li>
 
 
+            <li class="nav-item"><a href="{%url 'show_basket'%}" class="nav-link active bot" aria-current="page">Корзина</a></li>
       </ul>
 
     </header>

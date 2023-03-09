@@ -7,22 +7,28 @@ from .models import Category, Product, Basket, Orders
 # Create your views here.
 
 class HomeView(TemplateView):
+    """Home page"""
     template_name = 'shop/home.html'
 
 
 class CategoryList(ListView):
+    """View which present all category"""
     model = Category
     context_object_name = 'cat'
-    # queryset = Category.objects.all()
     template_name = 'shop/all_category.html'
 
     def get_queryset(self):
         return Category.objects.all()
 
 
-def all_product_category(request, category_pk):
-    products = Product.objects.filter(category__pk=category_pk).select_related('category')
-    return render(request, 'shop/all_product_category.html', {'products': products})
+class AllProductCategory(ListView):
+    model = Product
+    context_object_name = 'products'
+    template_name = 'shop/all_product_category.html'
+
+    def get_queryset(self):
+        return self.model.objects.filter(category__pk=self.kwargs['category_pk'], in_stock=True).select_related(
+            'category')
 
 
 class ProductDetail(DetailView):
@@ -41,7 +47,7 @@ def add_to_basket(request, product_pk):
 
 def show_basket(request):
     try:
-        user_basket = Basket.objects.filter(user=request.user).first()
+        user_basket = Basket.objects.filter(user=request.user.id)
         products = user_basket.products.all
         return render(request, 'shop/show_basket.html', {'user_basket': user_basket, 'products': products})
     except AttributeError:
