@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinLengthValidator
 from phone_field import PhoneField
 
+
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=70, verbose_name='Название категории', unique=True)
@@ -10,6 +11,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name = 'Категории'
+        verbose_name_plural = 'Категории'
 
     def __str__(self):
         return self.name

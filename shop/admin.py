@@ -2,7 +2,7 @@ from django import forms
 from django.contrib import admin
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
-from .models import Category, Product, Orders
+from .models import Category, Product, Orders, Basket
 
 
 class ProductAdminForm(forms.ModelForm):
@@ -40,4 +40,9 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Orders)
 class OrdersAdmin(admin.ModelAdmin):
-    readonly_fields = [ 'products']
+    readonly_fields = ['products']
+
+
+
+
+admin.site.register(Basket)
