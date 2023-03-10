@@ -1,8 +1,33 @@
- .position-where{
+      .position{
+        left: 320px;
+        top: 30px;
+        display: inline-block;
+      }
+
+
+      }
+      .left_text{
+        margin-left: 40px;
+      }
+      .right-text{
+        margin-left: 150px;
+      }
+      .to{
+        margin-bottom: 20px;
+      }
+      .color{
+        color: black;
+      }
+      .position-where{
         margin-left: 590px ;
         margin-top: 100px;
       }
-
-  .text-position-cart{
-        margin-left: 180px;
+      .position-cart{
+        margin-top: 50px;
+      }
+      .text-posiotion-cart{
+            margin-left: 100px;
+      }
+      .text-catalog{
+        margin-left: 480px;
       }

@@ -16,8 +16,7 @@ class ProductAdminForm(forms.ModelForm):
 # Register your models here.
 
 
-# class ProductAdminForm(form.ModelForm):
-#     pass
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     """Настройки для категорий"""

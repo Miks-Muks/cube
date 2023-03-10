@@ -3,7 +3,7 @@ from django.shortcuts import redirect
 
 
 def send_sms(request):
-    send_data = {'api_id': 'A99AD5F9-80C1-62B5-36CB-A391552A6C0CA99AD5F9-80C1-62B5-36CB-A391552A6C0C',
-                 'to': '79046664036', 'msg': 'Поступил заказ', 'json': 1}
+    send_data = {'api_id': 'AF33C9EA-6B46-7961-7EA3-F062F1EE2503',
+                 'to': '79950071654', 'msg': 'Поступил заказ', 'json': 1}
     result = r.post(url='https://sms.ru/sms/send', data=send_data)
     return redirect('home')
