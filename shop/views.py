@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-
+from django.http import HttpResponseRedirect
 from .models import Category, Product, Basket, Orders
 from .forms import OrderForm
 
@@ -51,11 +51,15 @@ def add_to_basket(request, product_pk):
     basket.products.add(product)
     return redirect('product_detail', product_pk=product.id)
 
+
 @login_required
 def show_basket(request):
     user_basket = Basket.objects.filter(user=request.user.id).first()
-    products = user_basket.products.all()
-    return render(request, 'shop/show_basket.html', {'user_basket': user_basket, 'products': products})
+    try:
+        products = user_basket.products.all()
+        return render(request, 'shop/show_basket.html', {'user_basket': user_basket, 'products': products})
+    except AttributeError as ext:
+        return render(request, 'shop/show_basket.html', {'message': 'Корзина пуста'})
 
 
 def delete_from_bakset(request, pk_product):
@@ -64,33 +68,70 @@ def delete_from_bakset(request, pk_product):
     user_basket.products
 
 
+# def sigh_up(request):
+#     if request.method == "GET":
+#         form = UserCreationForm
+#         return render(request, 'shop/signup.html', context={'form': form})
+#     else:
+#         if request.POST.get('password1') == request.POST.get('password2'):
+#             try:
+#                 user = User.objects.create_user(username=request.POST['username'], password=request.POST['password2'])
+#                 user.save()
+#                 login(request=request, user=user)
+#                 return HttpResponseRedirect('/')
+#             except IntegrityError as ext:
+#                 print(ext)
+#                 return render(request, 'shop/signup.html', {'form': UserCreationForm,
+#                                                             'error': 'That username has already been taken. Please choose a new username'})
+#
+#
+# def login_user(request):
+#     if request.method == 'GET':
+#         form = AuthenticationForm
+#         return render(request, 'shop/login.html', context={'form': form})
+#     else:
+#         u_name = request.POST.get('username')
+#         u_password = request.POST.get('password1')
+#         user = authenticate(request, username=u_name, password=u_password)
+#         if user:
+#             login(request, user)
+#             return redirect('HomeView')
+#         else:
+#             return render(request, 'shop/login.html',
+#                           context={'form': AuthenticationForm(), 'error': 'Username and password did not match'})
+
 def sigh_up(request):
-    if request.method == "GET":
-        form = UserCreationForm
-        return render(request, 'shop/signup.html', context={'form': form})
+    if request.method == 'GET':
+        return render(request, 'shop/signup.html', {'form': UserCreationForm()})
     else:
-        if request.POST.get('password1') == request.POST.get('password2'):
+        if request.POST['password1'] == request.POST['password2']:
             try:
-                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password2'])
+                user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                 user.save()
                 login(request, user)
-                return redirect(to='HomeView')
-            except IntegrityError as ext:
-                print(ext)
-                return render(request, 'shop/signup.html', {'form': UserCreationForm,
+                return redirect('home')
+            except IntegrityError:
+                return render(request, 'shop/signup.html', {'form': UserCreationForm(),
                                                             'error': 'That username has already been taken. Please choose a new username'})
+        else:
+            return render(request, 'shop/signup.html',
+                          {'form': UserCreationForm(), 'error': 'Passwords did not match'})
 
 
-def login(request):
+def login_user(request):
     if request.method == 'GET':
-        form = AuthenticationForm
-        return render(request, 'shop/login.html', context={'form': form})
+        return render(request, 'shop/login.html', {'form': AuthenticationForm()})
     else:
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
-        if user:
-            login(request, user)
-            return redirect('HomeView')
-        else:
+        if user is None:
             return render(request, 'shop/login.html',
-                          context={'form': AuthenticationForm(), 'error': 'Username and password did not match'})
+                          {'form': AuthenticationForm(), 'error': 'Username and password did not match'})
+        else:
+            login(request, user)
+            return redirect('home')
 
+
+@login_required
+def logout_user(request):
+    logout(request)
+    return redirect('home')

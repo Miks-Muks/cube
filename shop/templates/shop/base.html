@@ -28,14 +28,19 @@
 
       </ul>
         {%if user.is_authenticated%}
+         <form style='display: none;' method="POST" action="{% url 'logout_user' %}">
+                        {% csrf_token %}
+                        <button id="signOutBtn" type="submit">Logout</button>
+                    </form>
+                </li>
         <div class="col-md-3 text-end">
         <a href="{%url 'show_basket'%}"><button type="button" class="btn btn-outline-primary me-2">Корзина</button></a>
-        <a href=""> <button type="button" class="btn btn-primary">Выйти </button></a>
-
+        <a href="{%url 'logout_user'%}"> <button type="button" class="btn btn-primary">Выйти </button></a>
+        </form>
       </div>
          {%else%}
       <div class="col-md-3 text-end">
-        <a href="{%url 'login'%}"><button type="button" class="btn btn-outline-primary me-2">Войти</button></a>
+        <a href="{%url 'login_user'%}"><button type="button" class="btn btn-outline-primary me-2">Войти</button></a>
         <a href="{%url 'sigh_up'%}"> <button type="button" class="btn btn-primary">Зарегистрироваться </button></a>
 
       </div>
