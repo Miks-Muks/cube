@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'shop',
     'debug_toolbar',
     'ckeditor',
-    'phone_field'
+    'rest_framework',
+    'phone_field',
 ]
 
 MIDDLEWARE = [
@@ -88,7 +89,13 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
