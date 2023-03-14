@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import HomeView, CategoryList, AllProductCategory, ProductDetail, sigh_up, login_user, show_basket, \
-    add_to_basket, logout_user
+    add_to_basket, logout_user, delete_from_basket
 from .services import send_sms
 
 urlpatterns = [
@@ -15,6 +15,7 @@ urlpatterns = [
     path('sigh_up', sigh_up, name='sigh_up'),
     path('login_user', login_user, name='login_user'),
     path('logout_user', logout_user, name='logout_user'),
+    path('delete_from_basket', delete_from_basket, name='delete_from_basket'),
 #     # path('create_order', create_order, name='create_order'),
 ]
     
