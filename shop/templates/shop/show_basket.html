@@ -2,7 +2,7 @@
 
 
 {%block basket%}
-<section class="h-100 h-custom" style="background-color: #eee;">
+<section class="h-100 h-custom" style="background-color: white;">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col">
@@ -13,7 +13,7 @@
 
                   <div class="col-lg-7">
                     <h5 class="mb-3"><a href="{%url 'all_categories'%}" class="text-body"><i
-                          class="fas fa-long-arrow-alt-left me-2"></i>Вернуться к каталогу</a></h5>
+                          class="fas fa-long-arrow-alt-left me-2"></i>Вернуться к каталогу  </a></h5>
                     <hr>
 
                     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -21,9 +21,18 @@
 
 
                       </div>
+                        {%if products.count > 4 %}
+                        <p class="mb-0">У вас {{products.count}} товаров в корзине</p>
+                        {%elif products.count <= 4%}
+                        <p class="mb-0">У вас {{products.count}} товара в корзине</p>
+                        {%else%}
+                        <p class="mb-0">У вас {{products.count}} товар в корзине</p>
+                        {%endif%}
+                      </div>
 
-                    </div>
+
                       {% if products%}
+
                     {%for p in products%}
                     <div class="card mb-3">
                       <div class="card-body">
@@ -36,7 +45,7 @@
                             </div>
                             <div class="ms-3">
                               <h5>{{p.name_product }}</h5>
-                              <p class="small mb-0">{{p.description|safe}} <a href="">Удалить </a></p>
+                              <p class="small mb-0">{{p.description|safe}} <a href=""><p  class="btn btn-danger">Удалить </p></a>
 
                             </div>
 
@@ -115,4 +124,43 @@
       </div>
     </section>
 
+{%endblock%}
+{%block footer%}
+ <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top bot ">
+          <div class="col mb-3 ">
+            <p class="text-muted right-text">&copy; 2023 - cubekazan.ru</p>
+          </div>
+
+          <div class="col mb-3">
+
+          </div>
+
+          <div class="col mb-3">
+            <h5>Связь</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Телефон: <b> (843) 259‑66‑57 </b></a></li>
+
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Электронная почта: <b>korobki16@mail.ru</b></a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">WhatsApp: <b>+7962‑559‑66‑57</b></a></li>
+            </ul>
+          </div>
+
+          <div class="col mb-3">
+            <h5>Информация о магазине</h5>
+            <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a class="nav-link p-0 text-muted text-color-footer color">Адрес Чистопольская ул., 7, Казань</a></li>
+              <li class="nav-item mb-2"><a  class="nav-link p-0 text-muted">График работы пн-пт 10:00-18:00
+                 </a></li>
+              <li class="nav-item mb-2"><a  class="nav-link p-0 text-muted">сб 10:00-15:00</a></li>
+              <li class="nav-item mb-2"><a  class="nav-link p-0 text-muted">обед 13:00-14:00</a></li>
+           <li class="nav-item mb-2"><a href="/admin/" class="nav-link p-0 text-muted">Для сотрудников</a></li>
+            </ul>
+          </div>
+
+
+
+
+
+          </div>
+        </footer>
 {%endblock%}

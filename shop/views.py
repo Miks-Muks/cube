@@ -52,7 +52,7 @@ def add_to_basket(request, product_pk):
 
 @login_required
 def show_basket(request):
-    user_basket = Basket.objects.filter(user=request.user.id).first()
+    user_basket = get_object_or_404(Basket, user=request.user.id)
     try:
         products = user_basket.products.all()
 
@@ -70,6 +70,7 @@ def delete_from_basket(request, pk_product):
     return redirect('product_detail', product_pk=pk_product)
 
 
+# View для Auth
 def sigh_up(request):
     if request.method == 'GET':
         return render(request, 'shop/signup.html', {'form': UserCreationForm()})
