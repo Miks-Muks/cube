@@ -35,3 +35,16 @@
       .header-name{
       right: 200px;
       }
+
+      .pref-link:link, a:visited {
+  background-color: #f44336;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.pref-link:hover, a:active {
+  background-color: red;
+}

@@ -17,6 +17,11 @@ class HomeView(TemplateView):
     template_name = 'shop/home.html'
 
 
+class ContactView(TemplateView):
+    """Home page"""
+    template_name = 'shop/contact.html'
+
+
 class CategoryList(ListView):
     """View which present all category"""
     model = Category
@@ -47,13 +52,14 @@ def add_to_basket(request, product_pk):
     book = get_object_or_404(Product, pk=product_pk)
     basket, created = Basket.objects.get_or_create(user=request.user)
     basket.products.add(book)
+    basket.save()
     return redirect('product_detail', product_pk=product_pk)
 
 
 @login_required
 def show_basket(request):
-    user_basket = get_object_or_404(Basket, user=request.user.id)
     try:
+        user_basket = Basket.objects.prefetch_related('products').get(user=request.user.id)
         products = user_basket.products.all()
 
         return render(request, 'shop/show_basket.html', {'user_basket': user_basket, 'products': products})
@@ -62,12 +68,14 @@ def show_basket(request):
 
 
 @login_required
-def delete_from_basket(request, pk_product):
+def delete_product(request, product_pk):
     user_basket = Basket.objects.get(user=request.user.id)
 
-    product = user_basket.products.remove(pk_product)
+    product = get_object_or_404(Product, pk=product_pk)
+    user_basket.products.remove(product)
+    user_basket.save()
 
-    return redirect('product_detail', product_pk=pk_product)
+    return redirect('show_basket')
 
 
 # View для Auth

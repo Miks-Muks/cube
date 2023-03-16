@@ -1,7 +1,7 @@
 {% extends 'shop/base.html' %}
 
 
-{%block basket%}
+{%block content%}
 <section class="h-100 h-custom" style="background-color: white;">
       <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -12,7 +12,8 @@
                 <div class="row">
 
                   <div class="col-lg-7">
-                    <h5 class="mb-3"><a href="{%url 'all_categories'%}" class="text-body"><i
+                    <h5 class="mb-3">
+                        <a href="{%url 'all_categories'%}" class="text-body"><i
                           class="fas fa-long-arrow-alt-left me-2"></i>Вернуться к каталогу  </a></h5>
                     <hr>
 
@@ -23,10 +24,12 @@
                       </div>
                         {%if products.count > 4 %}
                         <p class="mb-0">У вас {{products.count}} товаров в корзине</p>
-                        {%elif products.count <= 4%}
+                        {%elif products.count <= 4 %}
                         <p class="mb-0">У вас {{products.count}} товара в корзине</p>
-                        {%else%}
+                         {%elif products.count == 1 %}
                         <p class="mb-0">У вас {{products.count}} товар в корзине</p>
+                        {%else%}
+                        <p class="mb-0">У вас {{products.count}} товаров в корзине</p>
                         {%endif%}
                       </div>
 
@@ -45,8 +48,15 @@
                             </div>
                             <div class="ms-3">
                               <h5>{{p.name_product }}</h5>
-                              <p class="small mb-0">{{p.description|safe}} <a href=""><p  class="btn btn-danger">Удалить </p></a>
+                              <a href="{%url 'delete_product' p.pk  %}"><p  class="btn btn-danger">Удалить </p></a>
 
+                                <div class="d-flex flex-row align-items-center">
+
+                            <div style="width: 80px;">
+                              <h5 class="mb-0">{{p.price_1 }} р.</h5>
+                            </div>
+                            <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                          </div>
                             </div>
 
 
