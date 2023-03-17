@@ -16,6 +16,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return f'all_product_category/{self.slug}'
+
+
 
 class Product(models.Model):
     name_product = models.CharField(verbose_name='Имя товара', max_length=100)

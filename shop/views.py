@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 
 from .models import Category, Product, Basket, Orders
 from .forms import OrderForm
@@ -27,6 +28,7 @@ class CategoryList(ListView):
     model = Category
     context_object_name = 'cat'
     template_name = 'shop/all_category.html'
+    paginate_by = 4
 
     def get_queryset(self):
         return Category.objects.all()
@@ -36,6 +38,7 @@ class AllProductCategory(ListView):
     model = Product
     context_object_name = 'products'
     template_name = 'shop/all_product_category.html'
+    paginate_by = 2
 
     def get_queryset(self):
         return self.model.objects.filter(category__slug=self.kwargs['slug'], in_stock=True).select_related(
@@ -59,10 +62,12 @@ def add_to_basket(request, product_pk):
 @login_required
 def show_basket(request):
     try:
+        form = OrderForm()
         user_basket = Basket.objects.prefetch_related('products').get(user=request.user.id)
         products = user_basket.products.all()
 
-        return render(request, 'shop/show_basket.html', {'user_basket': user_basket, 'products': products})
+        return render(request, 'shop/show_basket.html',
+                      {'user_basket': user_basket, 'products': products, 'form': form})
     except AttributeError as ext:
         return render(request, 'shop/show_basket.html', {'message': 'Корзина пуста'})
 
@@ -76,6 +81,14 @@ def delete_product(request, product_pk):
     user_basket.save()
 
     return redirect('show_basket')
+
+
+@login_required
+def create_order(request):
+    if request.method == 'GET':
+        print(request)
+
+    return HttpResponse()
 
 
 # View для Auth

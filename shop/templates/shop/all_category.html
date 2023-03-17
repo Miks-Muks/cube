@@ -1,11 +1,11 @@
 {%extends 'shop/base.html'%}
-{%load static%}
 
- {%block content%}
+
+{%block content%}
 
  {% for c in cat%}
  <div class="card position" style="width: 18rem;">
-        <img src="{{c.image_cat.url}}" class="card-img-top" alt="...">
+        <img src="{{c.image_cat.url}}" class="card-img-top"  alt="...">
         <div class="card-body">
           <h5 class="card-title">{{c.name}}</h5>
 
@@ -13,10 +13,12 @@
 
         <div class="card-body">
 
-          <a href="{% url 'all_product_category' slug=c.slug%}" class="btn btn-primary bot">Посмотреть товары</a>
+          <a href="{% url 'all_product_category' slug=c.slug%}" class="btn btn-primary ">Посмотреть товары</a>
         </div>
       </div>
     </div>
+
 {% endfor%}
+{%include 'include/paginator.html'%}
 {%endblock%}
 

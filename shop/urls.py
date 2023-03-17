@@ -17,6 +17,6 @@ urlpatterns = [
     path('logout_user', views.logout_user, name='logout_user'),
     path('delete_product/<int:product_pk>', views.delete_product, name='delete_product'),
 
-#     # path('create_order', create_order, name='create_order'),
+    path('create_order', views.create_order, name='create_order'),
 ]
     

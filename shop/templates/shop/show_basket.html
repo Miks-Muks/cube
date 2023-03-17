@@ -24,10 +24,8 @@
                       </div>
                         {%if products.count > 4 %}
                         <p class="mb-0">У вас {{products.count}} товаров в корзине</p>
-                        {%elif products.count <= 4 %}
+                        {%elif products.count > 1 %}
                         <p class="mb-0">У вас {{products.count}} товара в корзине</p>
-                         {%elif products.count == 1 %}
-                        <p class="mb-0">У вас {{products.count}} товар в корзине</p>
                         {%else%}
                         <p class="mb-0">У вас {{products.count}} товаров в корзине</p>
                         {%endif%}
@@ -92,7 +90,7 @@
                             class="fab fa-cc-amex fa-2x me-2"></i></a>
                         <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
 
-                        <form class="mt-4" method="post" action="">
+                        <form class="mt-4" method="post" action="{%url 'create_order'%}">
                           <div class="form-outline form-white mb-4">
                             <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
                               placeholder="Введите" name="name" />
