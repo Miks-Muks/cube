@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 
+
 from .models import Category, Product, Basket, Orders
 from .forms import OrderForm
 
@@ -68,7 +69,10 @@ def show_basket(request):
 
         return render(request, 'shop/show_basket.html',
                       {'user_basket': user_basket, 'products': products, 'form': form})
+    except Exception:
+        return render(request, 'shop/show_basket.html', {'message': 'Корзина пуста'})
     except AttributeError as ext:
+
         return render(request, 'shop/show_basket.html', {'message': 'Корзина пуста'})
 
 

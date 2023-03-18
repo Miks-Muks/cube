@@ -17,8 +17,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return f'all_product_category/{self.slug}'
-
+        return f"/all_product_category/{self.slug}"
 
 
 class Product(models.Model):
@@ -58,8 +57,9 @@ class Orders(models.Model):
 
 
 class Basket(models.Model):
-    user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
-    products = models.ManyToManyField(Product, related_name='product_basket')
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE, verbose_name='Пользователь')
+    products = models.ManyToManyField(Product, related_name='product_basket',
+                                      verbose_name='Товары добавленные в корзину')
 
     class Meta:
         verbose_name = 'Корзина'
@@ -67,5 +67,3 @@ class Basket(models.Model):
 
     def __str__(self):
         return f'{self.user}'
-
-

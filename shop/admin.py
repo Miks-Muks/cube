@@ -16,7 +16,6 @@ class ProductAdminForm(forms.ModelForm):
 # Register your models here.
 
 
-
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     """Настройки для категорий"""
@@ -40,8 +39,6 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Orders)
 class OrdersAdmin(admin.ModelAdmin):
     readonly_fields = ['products']
-
-
 
 
 admin.site.register(Basket)
