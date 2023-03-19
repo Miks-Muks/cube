@@ -2,7 +2,7 @@
 
 
 {%block content%}
-
+<main>
  {% for c in cat%}
  <div class="card position" style="width: 18rem;">
         <img src="{{c.image_cat.url}}" class="card-img-top" height="200"  alt="...">
@@ -13,12 +13,13 @@
 
         <div class="card-body">
 
-          <a href="{% url 'all_product_category' slug=c.slug%}" class="btn btn-primary ">Посмотреть товары</a>
+          <a href="{% url 'all_product_category' slug=c.slug%}" class="btn btn-success ">Посмотреть товары</a>
         </div>
       </div>
     </div>
 
 {% endfor%}
+    </main>
 {%include 'include/paginator.html'%}
 {%endblock%}
 

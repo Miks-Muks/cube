@@ -1,6 +1,6 @@
 {% extends 'shop/base.html'%}
  {%block content%}
-
+<main>
  {% for p in products%}
  <div class="card position" style="width: 18rem;">
         <img src="{{p.image.url}}" class="card-img-top" height="200" alt="...">
@@ -11,10 +11,13 @@
 
         <div class="card-body">
 
-          <a href="{%url 'product_detail' product_pk=p.pk%}" class="btn btn-primary bot">Посмотреть товар</a>
+          <a href="{%url 'product_detail' product_pk=p.pk%}" class="btn btn-success">Посмотреть товар</a>
         </div>
       </div>
     </div>
+
+
 {% endfor%}
+</main>
 {%include 'include/paginator.html'%}
 {%endblock%}

@@ -89,8 +89,6 @@ def delete_product(request, product_pk):
 
 @login_required
 def create_order(request):
-    if request.method == 'GET':
-        print(request)
 
     return HttpResponse()
 

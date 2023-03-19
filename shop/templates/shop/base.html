@@ -11,7 +11,7 @@
         top: 30px;
     }
               .position{
-        left: 320px;
+        left: 450px;
         top: -10px;
         display: inline-block;
       }
@@ -47,8 +47,8 @@
 <body style="">
 
 
- <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+ <div class="container" >
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" >
       <a href="{%url 'home'%}" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
          <img
           src="{% static "images/photo_2022-12-28_18-21-41.png" %}" width="70" height="70"
@@ -72,15 +72,15 @@
                 </li>
         <div class="col-md-3 text-end">
 
-        <a href="{%url 'show_basket'%}"><button type="button" class="btn btn-outline-primary me-2">Корзина</button></a>
+        <a href="{%url 'show_basket'%}"><button type="button" class="btn btn-outline-success me-2">Корзина</button></a>
 
-        <a href="{%url 'logout_user'%}"> <button type="button" class="btn btn-primary">Выйти </button></a>
+        <a href="{%url 'logout_user'%}"> <button type="button" class="btn btn-success ">Выйти </button></a>
         </form>
       </div>
          {%else%}
       <div class="col-md-3 text-end">
         <a href="{%url 'login_user'%}"><button type="button" class="btn btn-outline-primary me-2">Войти</button></a>
-        <a href="{%url 'sigh_up_user'%}"> <button type="button" class="btn btn-primary">Зарегистрироваться </button></a>
+        <a href="{%url 'sigh_up_user'%}"> <button type="button" class="btn btn-primary" style="background-color:#99ce00">Зарегистрироваться </button></a>
 
       </div>
       {%endif%}
