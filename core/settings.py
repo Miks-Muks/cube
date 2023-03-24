@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'rest_framework',
     'phone_field',
+    'adminsortable2',
 ]
 
 MIDDLEWARE = [

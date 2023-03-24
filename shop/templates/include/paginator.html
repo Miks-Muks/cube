@@ -8,10 +8,10 @@
 
      {% if page_obj.has_next %}
     <li class="page-item">
-      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Следущая страница</a>
 
     </li>
-      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Предыдущая страница</a>
   </ul>
     {%endif%}
 </nav>

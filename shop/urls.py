@@ -1,13 +1,14 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page
 
 from shop import views
 from .services import send_sms
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
-    path('contacts', views.ContactView.as_view(), name='contacts'),
-    path('all_categories/', views.CategoryList.as_view(), name='all_categories'),
-    path('all_product_category/<slug:slug>', views.AllProductCategory.as_view(), name='all_product_category'),
+    path('contacts', cache_page(60)(views.ContactView.as_view()), name='contacts'),
+    path('all_categories/', cache_page(60)(views.CategoryList.as_view()), name='all_categories'),
+    path('all_product_category/<slug:slug>', cache_page(60)(views.AllProductCategory.as_view()), name='all_product_category'),
     path('product_detail/<int:product_pk>', views.ProductDetail.as_view(), name='product_detail'),
     path('show basket', views.show_basket, name='show_basket'),
     path('add_to_basket/<int:product_pk>', views.add_to_basket, name='add_to_basket'),
