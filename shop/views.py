@@ -5,8 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse
-
+from django.contrib import messages
 
 from .models import Category, Product, Basket, Orders
 from .forms import OrderForm
@@ -39,7 +38,6 @@ class AllProductCategory(ListView):
     model = Product
     context_object_name = 'products'
     template_name = 'shop/all_product_category.html'
-    paginate_by = 2
 
     def get_queryset(self):
         return self.model.objects.filter(category__slug=self.kwargs['slug'], in_stock=True).select_related(
@@ -89,8 +87,20 @@ def delete_product(request, product_pk):
 
 @login_required
 def create_order(request):
+    if request.method == 'POST':
+        order = Orders.objects.create(user=request.user, name=request.POST['name'],
+                                      phone_number=request.POST['phone_number'])
+        if order:
+            basket = Basket.objects.get(user=request.user)
+            products = basket.products.all()
+            for product in products:
+                order.products.add(product)
 
-    return HttpResponse()
+            basket.delete()
+            return redirect('show_basket')
+    else:
+        message = messages.error(request, 'Введите ваши данные')
+        return render(request, 'shop/show_basket')
 
 
 # View для Auth
