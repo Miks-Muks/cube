@@ -5,10 +5,11 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from django.contrib import messages
+from django.utils import timezone
 
 from .models import Category, Product, Basket, Orders
 from .forms import OrderForm
+from .services import send_sms
 
 
 # Create your views here.
@@ -88,19 +89,21 @@ def delete_product(request, product_pk):
 @login_required
 def create_order(request):
     if request.method == 'POST':
-        order = Orders.objects.create(user=request.user, name=request.POST['name'],
-                                      phone_number=request.POST['phone_number'])
+        user = request.user
+        name = request.POST['name']
+        created = timezone.now()
+        phone_number = request.POST['phone_number']
+        order = Orders.objects.create(user=user, name=name,
+                                      phone_number=phone_number, created=created)
         if order:
-            basket = Basket.objects.get(user=request.user)
+            basket = get_object_or_404(Basket, user=request.user)
             products = basket.products.all()
             for product in products:
                 order.products.add(product)
-
+            order.save()
+            send_sms(request)
             basket.delete()
             return redirect('show_basket')
-    else:
-        message = messages.error(request, 'Введите ваши данные')
-        return render(request, 'shop/show_basket')
 
 
 # View для Auth

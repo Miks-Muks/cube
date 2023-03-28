@@ -1,7 +1,8 @@
 
 {% extends 'shop/base.html'%}
 {% load static %}
-
+{% load cache %}
+{% cache 200 startinfo %}
 {%block startinfo%}
 
 <div class="container px-4 px-lg-5" xmlns="http://www.w3.org/1999/html" >
@@ -29,4 +30,6 @@
       </div>
 
     </div>
+
 {%endblock%}
+{% endcache %}

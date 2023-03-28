@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'phone_field',
     'adminsortable2',
+    'imagekit',
 ]
 
 MIDDLEWARE = [

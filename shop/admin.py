@@ -26,11 +26,10 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
-
 @admin.register(Product)
 class ProductAdmin(SortableAdminMixin, admin.ModelAdmin):
     """Настройки для товаров"""
-    list_display = ['name_product', 'price_1', 'price_2',  'in_stock']
+    list_display = ['name_product', 'price_1', 'price_2', 'in_stock']
     list_filter = ['in_stock', 'category']
     list_editable = ['in_stock', 'price_1', 'price_2']
     search_fields = ['brand_of_cardboard']
@@ -40,7 +39,9 @@ class ProductAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 @admin.register(Orders)
 class OrdersAdmin(admin.ModelAdmin):
-    readonly_fields = ['products']
+    readonly_fields = ['products', 'name', 'phone_number', 'created']
+    list_display = ['user', 'name']
+    list_display_links = ['user']
 
 
 admin.site.register(Basket)

@@ -8,7 +8,8 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('contacts', cache_page(60)(views.ContactView.as_view()), name='contacts'),
     path('all_categories/', cache_page(60)(views.CategoryList.as_view()), name='all_categories'),
-    path('all_product_category/<slug:slug>', views.AllProductCategory.as_view(), name='all_product_category'),
+    path('all_product_category/<slug:slug>', views.AllProductCategory.as_view(),
+         name='all_product_category'),
     path('product_detail/<int:product_pk>', views.ProductDetail.as_view(), name='product_detail'),
     path('show basket', views.show_basket, name='show_basket'),
     path('add_to_basket/<int:product_pk>', views.add_to_basket, name='add_to_basket'),
@@ -20,4 +21,3 @@ urlpatterns = [
 
     path('create_order', views.create_order, name='create_order'),
 ]
-    
