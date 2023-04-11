@@ -7,11 +7,12 @@
     </li>
 
      {% if page_obj.has_next %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Следущая страница</a>
-
     </li>
-      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Предыдущая страница</a>
+      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&laquo;</a>
   </ul>
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+
+
     {%endif%}
 </nav>
