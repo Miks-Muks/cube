@@ -3,6 +3,7 @@
 
 {%block content%}
 
+
 <section class="h-100 h-custom" style="background-color: white;">
       <div class="container py-5 h-100" style="margin-bottom:50px;">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -65,10 +66,10 @@
                       </div>
                     </div>
               {%endfor%}
-                      {%else%}
-                      <h3><b>{{message}}</b></h3>
-                      {%endif%}
 
+
+                      {%endif%}
+          <h3><b>{{message}}</b></h3>
 
 
 
@@ -105,6 +106,11 @@
                             <label class="form-label" for="typeText">Номер телефона</label>
                           </div>
 
+                          <div class="form-outline form-white mb-4">
+                            <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
+                              placeholder="Если необходима доставка курьером" minlength="7" maxlength="40" name="address" />
+                            <label class="form-label" for="typeText">Адресс доставки</label>
+                          </div>
 
 
                           <div class="d-flex justify-content-between color-p">

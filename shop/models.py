@@ -54,6 +54,7 @@ class Orders(models.Model):
     phone_number = PhoneField(blank=True, help_text='Номер телефона заказчика')
     name = models.CharField(max_length=30, verbose_name='ФИО', blank=True)
     created = models.DateTimeField(verbose_name='Дата создания ')
+    address = models.CharField(verbose_name='Адресс доставки', max_length=70, default='Чистопольская ул. 7, Казань')
 
     class Meta:
         default_permissions = ('delete', 'view')

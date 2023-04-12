@@ -1,7 +1,14 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView
+from django.shortcuts import render, redirect
+from django.views.generic import (TemplateView,
+                                  ListView,
+                                  CreateView,
+                                  UpdateView,
+                                  DetailView)
+from django.contrib import messages
+
 
 from .models import News
+from .forms import ReviewsForm
 
 
 # Create your views here.
@@ -28,3 +35,19 @@ class DiscontView(TemplateView):
 class NewsDetailView(DetailView):
     model = News
     template_name = 'news/detail.html'
+    context_object_name = 'news'
+
+
+class ReviewsCreateView(CreateView):
+    def get(self, request, *args, **kwargs):
+        context = {'form': ReviewsForm()}
+        return render(request, 'news/create_reviews.html', context)
+
+    def post(self, request, *args, **kwargs):
+        form = ReviewsForm(request.POST)
+        if form.is_valid():
+            book = form.save()
+            book.save()
+            return redirect('reviews')
+        messages.error(request, "Document deleted.")
+        return render(request, 'news/create_reviews.html', {'form': form})

@@ -39,7 +39,7 @@ class ProductAdmin(SortableAdminMixin, admin.ModelAdmin):
 
 @admin.register(Orders)
 class OrdersAdmin(admin.ModelAdmin):
-    readonly_fields = ['products', 'name', 'phone_number', 'created']
+    readonly_fields = ['products', 'name', 'phone_number', 'created', 'address']
     list_display = ['user', 'name']
     list_display_links = ['user']
 

@@ -17,3 +17,12 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Reviews(models.Model):
+    name = models.CharField(verbose_name='Имя', max_length=40, blank=False)
+    reviews = models.TextField(verbose_name='Отзыв', blank=False)
+    date = models.DateField(verbose_name='Дата создания', auto_now_add=True)
+
+    def __str__(self):
+        return self.name

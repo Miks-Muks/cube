@@ -6,6 +6,7 @@ from django.db import IntegrityError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.contrib import messages
 
 from .models import Category, Product, Basket, Orders
 from .forms import OrderForm
@@ -91,19 +92,30 @@ def create_order(request):
     if request.method == 'POST':
         user = request.user
         name = request.POST['name']
+        address = request.POST['address']
         created = timezone.now()
         phone_number = request.POST['phone_number']
-        order = Orders.objects.create(user=user, name=name,
-                                      phone_number=phone_number, created=created)
-        if order:
-            basket = get_object_or_404(Basket, user=request.user)
-            products = basket.products.all()
-            for product in products:
-                order.products.add(product)
-            order.save()
-            send_sms(request)
-            basket.delete()
-            return redirect('show_basket')
+        check_fields = (name, phone_number)
+        if all(check_fields):
+            order = Orders.objects.create(user=user, name=name,
+                                          phone_number=phone_number, created=created, address=address)
+            try:
+                basket = Basket.objects.get(user=request.user)
+                products = basket.products.all()
+                for product in products:
+                    order.products.add(product)
+                order.save()
+                # send_sms(request)
+                basket.delete()
+                messages.info(request, 'Товар оформлен, с вами свяжутся')
+                return redirect('show_basket')
+            except ValueError:
+                message = 'Введите данные или добавьте товар в корзину'
+                return render(request, 'shop/show_basket.html', context={'message': message})
+
+        else:
+            return render(request, 'shop/show_basket.html',
+                          context={'message': 'Введите данные или добавьте товар в корзину'})
 
 
 # View для Auth

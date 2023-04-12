@@ -2,7 +2,7 @@ from django.contrib import admin
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
-from .models import News
+from .models import News, Reviews
 
 
 # Register your models here.
@@ -20,3 +20,6 @@ class NewsAdmin(admin.ModelAdmin):
     list_display = ['title']
     prepopulated_fields = {'slug': ('title',)}
     form = ProductAdminForm
+
+
+admin.site.register(Reviews)

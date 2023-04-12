@@ -1,0 +1,12 @@
+{%extends 'news/_base.html'%}
+{%block content%}
+<div class="container">
+<form action="{%url 'create'%}" method="POST">
+
+{% csrf_token %}
+
+{{form.as_p}}
+<button type="submit">SUBMIT</button>
+</form>
+</div>
+{%endblock%}
