@@ -20,11 +20,6 @@ class HomeView(TemplateView):
     template_name = 'shop/home.html'
 
 
-class ContactView(TemplateView):
-    """Home page"""
-    template_name = 'shop/contact.html'
-
-
 class CategoryList(ListView):
     """View which present all category"""
     model = Category

@@ -6,14 +6,11 @@ from django.views.generic import (TemplateView,
                                   DetailView)
 from django.contrib import messages
 
-
-from .models import News
+from .models import News, Reviews
 from .forms import ReviewsForm
 
 
-# Create your views here.
-
-
+# View for information about company
 class NewsView(ListView):
     template_name = 'news/news.html'
     queryset = News.objects.filter(published=True)
@@ -38,6 +35,7 @@ class NewsDetailView(DetailView):
     context_object_name = 'news'
 
 
+# view for reviews
 class ReviewsCreateView(CreateView):
     def get(self, request, *args, **kwargs):
         context = {'form': ReviewsForm()}
@@ -46,8 +44,15 @@ class ReviewsCreateView(CreateView):
     def post(self, request, *args, **kwargs):
         form = ReviewsForm(request.POST)
         if form.is_valid():
-            book = form.save()
-            book.save()
+            review = form.save(commit=False)
+            review.user = request.user
+            review.save()
             return redirect('reviews')
-        messages.error(request, "Document deleted.")
+        messages.error(request, "Что-то пошло не так.")
         return render(request, 'news/create_reviews.html', {'form': form})
+
+
+class ReviewsListView(ListView):
+    template_name = 'news/reviews.html'
+    queryset = Reviews.objects.all()
+    context_object_name = 'reviews'

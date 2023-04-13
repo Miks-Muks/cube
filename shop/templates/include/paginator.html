@@ -2,16 +2,16 @@
   <ul class="pagination justify-content-center">
     <li class="page-item  ">
         {% if page_obj.has_previous %}
-      <a href="?page={{ page_obj.previous_page_number }}" class="page-link ">Previous</a>
+      <a href="?page={{ page_obj.previous_page_number }}" class="page-link ">Previus</a>
         {%endif%}
     </li>
 
      {% if page_obj.has_next %}
     </li>
-      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&laquo;</a>
+      <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">»</a>
   </ul>
     <li class="page-item">
-      <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Last</a>
 
 
     {%endif%}

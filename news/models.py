@@ -22,7 +22,8 @@ class News(models.Model):
 class Reviews(models.Model):
     name = models.CharField(verbose_name='Имя', max_length=40, blank=False)
     reviews = models.TextField(verbose_name='Отзыв', blank=False)
-    date = models.DateField(verbose_name='Дата создания', auto_now_add=True)
+    date = models.DateTimeField(verbose_name='Дата создания', default=timezone.now())
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

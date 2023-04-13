@@ -1,12 +1,31 @@
 {%extends 'news/_base.html'%}
 {%block content%}
 <div class="container">
-<form action="{%url 'create'%}" method="POST">
+<div class="container contact-form">
+            <div class="contact-image">
+                <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+            </div>
+            <form method="post", action="{%url 'create'%}">{%csrf_token%}
+                <h3>Оставьте отзыв о нас</h3>
+               <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Ваше имя</label>
+                            {{form.name}}
+                        </div>
 
-{% csrf_token %}
-
-{{form.as_p}}
-<button type="submit">SUBMIT</button>
-</form>
+                        <div class="form-group">
+                            <input type="submit" name="btnSubmit" class="btnContact" value="Отправить" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Ваш отзыв</label>
+                           {{form.reviews}}
+                        </div>
+                    </div>
+                </div>
+            </form>
+</div>
 </div>
 {%endblock%}
