@@ -1,29 +1,30 @@
 {%extends 'news/_base.html'%}
+{%load static%}
 {%block content%}
 <div class="container marketing">
 
     <!-- Three columns of text below the carousel -->
     <div class="row">
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
-        <h2 class="fw-normal">На сайте</h2>
+        <div class="col-lg-4">
+            <img src="{%static 'images/shopping-online.jpg'%}" class="bd-placeholder-img rounded-circle" width="140"
+                 height="140">
+            <h2 class="fw-normal">На сайте</h2>
 
-        <p><a class="btn btn-secondary" href="#">Заказать»</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
-        <h2 class="fw-normal">По телефону</h2>
+            <p><a class="btn btn-warning" href="{% url 'all_categories'%}">Заказать»</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img src="{%static 'images/phone.jpg'%}" class="bd-placeholder-img rounded-circle" width="140"
+                 height="140">
+            <h2 class="fw-normal">По телефону</h2>
 
-        <p><a class="btn btn-secondary" href="#">Заказать »</a></p>
-      </div><!-- /.col-lg-4 -->
-      <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
-        <h2 class="fw-normal">Network</h2>
-
-        <p><a class="btn btn-secondary" href="#">Через соц сети »</a></p>
-      </div><!-- /.col-lg-4 -->
+            <p><a class="btn btn-warning" href="https://cubekazan.ru/tel:+79950071654">Позвонить »</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img src="{%static 'images/network.jpg'%}" class="bd-placeholder-img rounded-circle" width="140" height="140" >
+            <h2 class="fw-normal">Network</h2>
+            <p><a class="btn btn-warning" href="https://t.me/cubekazan">Через соц сети »</a></p>
+        </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 
 
-
-{%endblock%}
+    {%endblock%}

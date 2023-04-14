@@ -1,85 +1,88 @@
 {%extends 'news/_base.html'%}
+{%load static%}
 {%block content%}
 
 <main class="container">
-    <div class="card d-flex" style="width: 48rem">
-        <div class="card-body">
-            <!--Table-->
-            <table class="table-responsive">
-            </table>
-            <table class="table table-hover table-forum text-center">
-                <!--Table head-->
-                <thead>
-                <tr>
-                    <th></th>
-                    <th class="text-left">Отзывы</th>
-                    <th><a href="{%url 'create'%}"><button type="button" class="btn btn-warning" >Добавить отзыв</button></a></th>
-                </tr>
-                {%for r in reviews%}
-                </thead>
-
-                <!--Table head-->
-                <!--Table body-->
-                <tbody>
-                <tr>
-                    <td scope="row" class="text-nowrap">
-
-
-                            <i class="fas fa-thumbs-up ml-1"></i>
-                        </a>
-                        <a href="#" button" class="btn btn-outline-warning btn-sm p-1 m-0 waves-effect">
-                        <span class="value">{{r.name}}</span>
-                        <i class="fas fa-thumbs-down ml-1"></i>
-                        </a>
-                    </td>
-                    <td class="text-start">
-                        <a href="#" class="font-weight-bold blue-text">
-                           {{r.reviews}}
-                        </a>
-                        <div class="my-2">
-
-
-
-                            <span>{{r.date}}</span>
-                            <div></div>
-                        </div>
-                    </td>
-                    <td>
-
-                            <i class="fas fa-comments ml-1"></i>
-                        </a>
-                    </td>
-                </tr>
-
-                </tbody>
-                <!--Table body-->
-            </table>
-
-            <!-- Table -->
-
-            <!--Bottom Table UI-->
-            <div class="d-flex justify-content-center">
-                <!--Pagination -->
-                <nav class="my-2 pt-2">
-                    <ul class="pagination pagination-circle pg-info mb-0">
-                        <!--First-->
-                        <li class="page-item clearfix d-none d-md-block">
-
-                        </li>
-                        <!--Arrow left-->
-
-                        </li>
-                        <!--First-->
-                        <li class="page-item clearfix d-none d-md-block">
-
-                        </li>
-                    </ul>
-                </nav>
-                <!--/Pagination -->
-            </div>
-            <!--Bottom Table UI-->
-        </div>
+  <div class="card" style="width: 48rem">
+  <div class="border border-left border-right px-0">
+    <div class="p-3 border-bottom">
+      <h4 class="d-flex align-items-center mb-0">
+        Отзывы о компании КУБ <i class="far fa-xs fa-star ms-auto text-primary"></i>
+      </h4>
     </div>
-    {%endfor%}
+    <div>
+      <div class="card shadow-0">
+        <div class="card-body border-bottom pb-2">
+          <div class="d-flex">
+            <img src="{%static 'images/boss.png'%}" class="rounded-circle"
+              height="50" alt="Avatar" loading="lazy" />
+            <div class="d-flex align-items-center w-100 ps-3">
+              <div class="w-100">
+                <p>Инфа от Даниила что-то типо каждый отзыв нам важен</p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <ul class="list-unstyled d-flex flex-row ps-3 pt-3" style="margin-left: 50px;">
+              <li>
+                <a href=""><i class="far fa-image pe-2"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fas fa-photo-video px-2"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="fas fa-chart-bar px-2"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="far fa-smile px-2"></i></a>
+              </li>
+              <li>
+                <a href=""><i class="far fa-calendar-check px-2"></i></a>
+              </li>
+            </ul>
+            <div class="d-flex align-items-center">
+              <a href="{%url 'create'%}"><button type="button" class="btn btn-warning btn-rounded">Оставить отзыв</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        {%for r in reviews%}
+        <div class="d-flex p-3 border-bottom">
+
+          <div class="d-flex w-100 ps-3">
+            <div>
+              <a href="">
+                <h6 class="text-body">
+                  Пользователь : {{r.user}}
+
+
+                  <span><i class="fas fa-angle-down float-end"></i></span>
+                </h6>
+              </a>
+              <p style="line-height: 1.2;">
+               {{r.reviews}}
+              </p>
+              <ul class="list-unstyled d-flex justify-content-between mb-0 pe-xl-5">
+                <li>
+                  <i class="far fa-comment"></i>
+                </li>
+                <li><i class="fas fa-retweet"></i><span class="small ps-2">{{r.date}}</span></li>
+
+                <li>
+                  <i class="far fa-share-square"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  {%endfor%}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </main>
 {%endblock%}

@@ -6,7 +6,7 @@ from .services import send_sms
 
 urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
-    path('all_categories/', cache_page(60)(views.CategoryList.as_view()), name='all_categories'),
+    path('all_categories/', views.CategoryList.as_view(), name='all_categories'),
     path('all_product_category/<slug:slug>', views.AllProductCategory.as_view(),
          name='all_product_category'),
     path('product_detail/<int:product_pk>', views.ProductDetail.as_view(), name='product_detail'),
