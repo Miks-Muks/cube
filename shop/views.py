@@ -100,7 +100,7 @@ def create_order(request):
                 for product in products:
                     order.products.add(product)
                 order.save()
-                # send_sms(request)
+                send_sms(request)
                 basket.delete()
                 messages.info(request, 'Товар оформлен, с вами свяжутся')
                 return redirect('show_basket')

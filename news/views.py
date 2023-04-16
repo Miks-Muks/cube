@@ -5,6 +5,7 @@ from django.views.generic import (TemplateView,
                                   UpdateView,
                                   DetailView)
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import News, Reviews
 from .forms import ReviewsForm
@@ -36,7 +37,9 @@ class NewsDetailView(DetailView):
 
 
 # view for reviews
-class ReviewsCreateView(CreateView):
+class ReviewsCreateView(LoginRequiredMixin, CreateView):
+    login_url = "/login_user/"
+
     def get(self, request, *args, **kwargs):
         context = {'form': ReviewsForm()}
         return render(request, 'news/create_reviews.html', context)

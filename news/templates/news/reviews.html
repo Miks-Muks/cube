@@ -40,9 +40,15 @@
                 <a href=""><i class="far fa-calendar-check px-2"></i></a>
               </li>
             </ul>
+            {%if user.is_authenticated %}
             <div class="d-flex align-items-center">
               <a href="{%url 'create'%}"><button type="button" class="btn btn-warning btn-rounded">Оставить отзыв</button></a>
             </div>
+            {%else%}
+               <div class="d-flex align-items-center">
+              <a href="{%url 'login_user'%}"><button type="button" class="btn btn-warning btn-rounded">Необходимо войти в аккаунт чтобы оставлять отзывы</button></a>
+            </div>
+            {%endif %}
           </div>
         </div>
       </div>
