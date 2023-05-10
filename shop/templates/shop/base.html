@@ -41,32 +41,25 @@
       }
 
     </style>
-    <title>Cubekazan</title>
+
+    <title>Картонные коробки в Казани.</title>
 </head>
 <body>
 
 
- <div class="container" >
 
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" >
-      <a href="{%url 'home'%}" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-         <img
-          src="{% static "images/photo_2022-12-28_18-21-41.png" %}" width="70" height="70"
-            alt="Тут иконка магаза">
-          <h5>Куб-интернет магазин</h5>
-      </a>
-
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="{%url 'home'%}" class="nav-link px-2 link-secondary color-site">Главная</a></li>
+<nav class="py-2 bg-body-tertiary border-bottom bg-light">
+    <div class="container d-flex flex-wrap">
+      <ul class="nav me-auto">
+         <li><a href="{%url 'home'%}" class="nav-link px-2 link-secondary color-site">Главная</a></li>
         <li><a href="{%url 'all_categories'%}" class="nav-link px-2 link-dark color-site">Каталог</a></li>
         <li><a href="{%url 'news'%}" class="nav-link px-2 link-dark color-site">О компании</a></li>
 
 
         <li><a href="https://yandex.ru/maps/org/tsentr_pokupok/1101737285/?ll=49.103678%2C55.819755&z=16 " target="_blank" class="nav-link px-2 link-dark color-site">Адрес</a></li>
 
-
       </ul>
-        {%if user.is_authenticated%}
+      {%if user.is_authenticated%}
          <form style='display: none;' method="POST" action="{% url 'logout_user' %}">
                         {% csrf_token %}
                         <button id="signOutBtn" type="submit">Logout</button>
@@ -86,13 +79,13 @@
 
       </div>
       {%endif%}
-    </header>
-  </div>
-{%block content%}{%endblock%}
+    </div>
+  </nav>
 
 
+{%block header%}{%endblock%}
 {%block startinfo%} {%endblock%}
-
+{%block content%}{%endblock%}
   {%block map%}{%endblock%}
 
 

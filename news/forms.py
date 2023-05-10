@@ -10,3 +10,9 @@ class ReviewsForm(forms.ModelForm):
             'name',
             'reviews'
         ]
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'reviews': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+

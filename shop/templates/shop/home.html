@@ -3,7 +3,19 @@
 {% load static %}
 {% load cache %}
 {% cache 200 startinfo %}
+{%block header%}
+<header class="py-3 mb-4 border-bottom border">
+    <div class="container d-flex flex-wrap justify-content-center">
+      <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+        <img src="{% static "images/photo_2022-12-28_18-21-41.png" %}"" class="bi me-2" width="50" height="52">
+        <span class="fs-4">Интернет-магазин<br><small style="">Cubekazan.ru</small></span>
+      </a>
+        <div class="col-12 col-lg-auto mb-3 mb-lg-0" >
+        <p><b>Работаем:</b> <br>пн-пт 9:00‑18:00<br>сб 10:00‑14:00</p>
 
+      </div>
+    </div>
+{%endblock%}
 {%block startinfo%}
 
 <div class="container " xmlns="http://www.w3.org/1999/html" >
@@ -18,7 +30,25 @@
     </div>
 
       {%endblock%}
+{%block content%}
+    <main class="container-fluid">
 
+<div class="b-example-divider"></div>
+    <div class="container ">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{%static 'images/start.jpg'%}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Коробки в Казани оптом</h1>
+        <p class="lead">Тара из гофрокартона наиболее надежный способ доставить ваш товар до покупателя в сохранности. В продаже как типовые размеры, так и нестандартные. Если не нашли подходящего, изготовим коробки по индивидуальным размерам.
+Наши гофрокороба изготавливаются из трехслойного гофрокатртона профиль Е,В,С различных марок..</p>
+
+      </div>
+    </div>
+  </div>
+</main>
+    {%endblock%}
             {%block map%}
     <div class="container d-flex justify-content-center">
  <div  class="align-items-center my-5 ">
