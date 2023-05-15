@@ -17,7 +17,6 @@ django-imagekit==4.1.0
 django-js-asset==2.0.0
 django-phone-field==1.8.1
 django-request==1.6.2
-django_debug_toolbar==3.8.1
 djangorestframework==3.14.0
 idna==3.4
 kombu==5.2.4
