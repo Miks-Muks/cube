@@ -51,6 +51,7 @@ def add_to_basket(request, product_pk):
     book = get_object_or_404(Product, pk=product_pk)
     basket, created = Basket.objects.get_or_create(user=request.user)
     basket.products.add(book)
+    messages.success(request, 'Товар добавлен в корзину')
     basket.save()
     return redirect('product_detail', product_pk=product_pk)
 
@@ -74,7 +75,7 @@ def show_basket(request):
 @login_required
 def delete_product(request, product_pk):
     user_basket = Basket.objects.get(user=request.user.id)
-
+    messages.success(request, 'Товар добавлен')
     product = get_object_or_404(Product, pk=product_pk)
     user_basket.products.remove(product)
     user_basket.save()
@@ -100,7 +101,7 @@ def create_order(request):
                 for product in products:
                     order.products.add(product)
                 order.save()
-                send_sms(request)
+                # send_sms(request)
                 basket.delete()
                 messages.info(request, 'Товар оформлен, с вами свяжутся')
                 return redirect('show_basket')

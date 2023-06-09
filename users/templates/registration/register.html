@@ -1,0 +1,14 @@
+{%extends 'shop/base.html'%}
+{%block content%}
+<main class="container">
+    <div class="row ">
+        <form class="form-group" action="{% url 'users:register' %}" method="post">
+
+            {{form.as_p}}
+             {% csrf_token %}
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
+    </div>
+</main>
+{%endblock%}
+

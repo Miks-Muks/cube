@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from django.views.generic import (TemplateView,
-                                  ListView,
-                                  CreateView,
-                                  UpdateView,
-                                  DetailView)
+from django.views.generic import (
+    TemplateView,
+    ListView,
+    CreateView,
+    DetailView)
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -59,3 +59,4 @@ class ReviewsListView(ListView):
     template_name = 'news/reviews.html'
     queryset = Reviews.objects.all()
     context_object_name = 'reviews'
+    paginate_by = 10
