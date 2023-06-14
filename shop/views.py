@@ -40,10 +40,20 @@ class AllProductCategory(ListView):
         return self.model.objects.filter(category__slug=self.kwargs['slug'], in_stock=True).select_related(
             'category')
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["category"] = Category.objects.get(slug=self.kwargs['slug'])
+        return context
+
 
 class ProductDetail(DetailView):
     model = Product
     pk_url_kwarg = 'product_pk'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
 
 
 @login_required
