@@ -11,7 +11,7 @@ from django.contrib import messages
 from .models import Category, Product
 from .forms import OrderForm
 from .task import send_sms
-from .services import BasketController
+from .services import BasketController, OrderCreator, OrderManager
 
 
 # Create your views here.
@@ -87,5 +87,5 @@ def delete_product(request, product_pk):
 
 @login_required
 def create_order(request):
-    pass
-
+    order_creator = OrderCreator(order_manager=OrderManager)
+    order_creator.create(request)
